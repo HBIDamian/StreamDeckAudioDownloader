@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>StreamDeckAudioConverter</title>
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <!-- external bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Download audio files from your Stream Deck.">
+    <meta name="keywords"
+        content="Stream Deck, Elgato, Audio, Downloader, StreamDeckAudioDownloader, Stream Deck Audio, Stream Deck Downloader, Elgato Stream Deck, Elgato Stream Deck Audio, Elgato Stream Deck Downloader">
+    <meta name="author" content="Trinculo.xyz">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#d63384">
+    <meta charset="UTF-8">
+    
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="StreamDeckAudioDownloader">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trinculo.xyz/projects/streamdeckaudiodownloader/">
+    <meta property="og:image"
+        content="https://images.ctfassets.net/8j9xr8kwdre8/3g4PWBc6cFtgc3sfYEbMPi/03c47dad5b8b64e825ea7648c0eb9b2d/podcasters_loop_01_0089.png">
+    <meta property="og:description" content="Download audio files from your Stream Deck.">
+    <meta property="og:site_name" content="StreamDeckAudioDownloader - By HBIDamian">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:locale:alternate" content="en_US">
+    
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HBIDamian">
+    <meta name="twitter:creator" content="@HBIDamian">
+    <meta name="twitter:title" content="StreamDeckAudioDownloader">
+    <meta name="twitter:description" content="Download audio files from your Stream Deck.">
+    <meta name="twitter:image"
+        content="https://images.ctfassets.net/8j9xr8kwdre8/3g4PWBc6cFtgc3sfYEbMPi/03c47dad5b8b64e825ea7648c0eb9b2d/podcasters_loop_01_0089.png">
+    </head>
+</head>
+
+<body>
+    <header>
+        <div class="jumbotron text-center">
+            <h1 class="display-4">StreamDeckAudioDownloader</h1>
+            <p class="lead">Convert your Stream Deck audio files to a downloadable format.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="text-center">
+            <div class="row">
+                <div class="col-md-12">
+                   <h1>Choose between two methods</h1>
+                   <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>SDA2Wav</h3>
+                    <p>Download audio files from your Stream Deck and convert them to downloadable .wav files.</p>
+                    <br>
+                    <p>This code was adapted from <a href="https://github.com/RaineAllDay/SDA2Wav">RaineAllDay's SDA2Wav</a> project. Without her work, the following page wouldn't exist.</p>
+                    <hr>
+                    <button class="btn btn-primary mb-2" onclick="window.location.href = './sda2wav.html';">Go to SDA2Wav</button>
+                </div>
+                <div class="col-md-6">
+                    <h3>Catalog Scraper</h3>
+                    <p>Download audio files from your Stream Deck.</p>
+                    <br>
+                    <p>This project was made by me. I realised catalog.json contains preview urls, which contains the whole MP3 files.</p>
+                    <hr>
+                    <button class="btn btn-primary mb-2" onclick="window.location.href = './catalogscraper.html';">Go to Catalog Scraper</button>
+                </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-light text-center py-3">
+        <p>&copy; 2023 HBIDamian - All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script></body>
+
+</html>

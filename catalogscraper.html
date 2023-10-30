@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>StreamDeckAudioDownloader</title>
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <!-- external bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Download audio files from your Stream Deck.">
+    <meta name="keywords" content="Stream Deck, Elgato, Audio, Downloader, StreamDeckAudioDownloader, Stream Deck Audio, Stream Deck Downloader, Elgato Stream Deck, Elgato Stream Deck Audio, Elgato Stream Deck Downloader">
+    <meta name="author" content="Trinculo.xyz">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#d63384">
+    <meta charset="UTF-8">
+
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="StreamDeckAudioDownloader">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trinculo.xyz/projects/streamdeckaudiodownloader/">
+    <meta property="og:image" content="https://images.ctfassets.net/8j9xr8kwdre8/3g4PWBc6cFtgc3sfYEbMPi/03c47dad5b8b64e825ea7648c0eb9b2d/podcasters_loop_01_0089.png">
+    <meta property="og:description" content="Download audio files from your Stream Deck.">
+    <meta property="og:site_name" content="StreamDeckAudioDownloader - By HBIDamian">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:locale:alternate" content="en_US">
+
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@HBIDamian">
+    <meta name="twitter:creator" content="@HBIDamian">
+    <meta name="twitter:title" content="StreamDeckAudioDownloader">
+    <meta name="twitter:description" content="Download audio files from your Stream Deck.">
+    <meta name="twitter:image" content="https://images.ctfassets.net/8j9xr8kwdre8/3g4PWBc6cFtgc3sfYEbMPi/03c47dad5b8b64e825ea7648c0eb9b2d/podcasters_loop_01_0089.png">
+</head>
+
+<body>
+    <header>
+        <div class="jumbotron text-center">
+            <h1 class="display-4">StreamDeckAudioDownloader</h1>
+            <p class="lead">Convert your Stream Deck audio files to a downloadable format.</p>
+        </div>
+    </header>
+    <div class="text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>Catalog Scraper</h1>
+                    <h3>Upload catalog.json</h3>
+                    <p>Upload the <code>catalog.json</code> file from your Stream Deck.</p>
+                    <p>On Windows, it can be found in the following location:</p>
+                    <code>C:\Users\%USERNAME%\AppData\Roaming\Elgato\StreamDeck\Audio</code>
+                    <hr>
+                    <p>On Mac, it can be found in the following location:</p>
+                    <code>~/Library/Application Support/com.elgato.StreamDeck/Audio</code>
+                    <br>
+                    <hr>
+                    <!-- Upload catalog.json -->
+                    <button id="selectFile" class="btn btn-primary mb-2">Select catalog.json file</button>
+                    <input class="form-control-file" type="file" name="fileToUpload" id="fileToUpload" accept=".json"
+                        required title="Upload catalog.json file from your Stream Deck." style="display: none;" />
+                    <button class="btn btn-success mb-2" id="uploadButton" disabled>Upload</button>
+                </div>
+                <div class="col-md-6 embed-responsive embed-responsive-4by3" id="audioFiles">
+                    <!-- Download audio files.
+                    This will appear after the catalog.json file has been uploaded.
+                -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" id="footer">
+                    <br>
+                    <hr><br>
+                    <p>Created by <a href="https://trinculo.xyz">HBIDamian</a></p>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+        <script>
+            const selectFileButton = document.getElementById('selectFile');
+            const fileInputButton = document.getElementById('fileToUpload');
+            selectFileButton.addEventListener('click', function () {
+                fileInputButton.click();
+            });
+            // If the user selects a file, enable the upload button.
+            fileInputButton.addEventListener('change', function () {
+                const fileInput = document.getElementById('fileToUpload');
+                if (fileInput.files.length === 0) {
+                    return;
+                }
+                const file = fileInput.files[0];
+                if (file.type !== 'application/json') {
+                    return;
+                }
+                const uploadButton = document.getElementById('uploadButton');
+                uploadButton.disabled = false;
+            });
+
+            document.getElementById('uploadButton').addEventListener('click', function () {
+                const fileInput = document.getElementById('fileToUpload');
+                if (fileInput.files.length === 0) {
+                    alert('Please select a file to upload.');
+                    return;
+                }
+
+                const file = fileInput.files[0];
+
+                if (file.type !== 'application/json') {
+                    alert('Please upload a JSON file.');
+                    return;
+                }
+
+                const reader = new FileReader();
+
+                reader.onload = function (event) {
+                    const catalogData = event.target.result;
+
+                    // Parse the JSON data and display audio files
+                    displayAudioFiles(JSON.parse(catalogData));
+                };
+
+                reader.readAsText(file);
+            });
+
+            function displayAudioFiles(catalog) {
+                const audioFilesDiv = document.getElementById('audioFiles');
+                audioFilesDiv.innerHTML = '<h3>Download Audio Files</h3>';
+                audioFilesDiv.innerHTML += '<p>Click on the file name to download the audio file.</p>';
+
+                catalog.items.forEach(item => {
+                    audioFilesDiv.innerHTML += '<hr>';
+                    const fileType = item.info.type.toUpperCase();
+                    const fileName = fileType + ': ' + item.info.title;
+                    const downloadUrl = item.info.preview_url;
+
+                    audioFilesDiv.innerHTML += '<p><a href="' + downloadUrl + '" target="_blank">' + fileName + '</a></p>';
+                    audioFilesDiv.innerHTML += '<audio controls preload="none" style="width: 100%;" class="embed-responsive-item">' +
+                        '<source src="' + downloadUrl + '" type="audio/mpeg">' +
+                        '</audio>';
+                });
+            }
+        </script>
+</body>
+
+</html>
