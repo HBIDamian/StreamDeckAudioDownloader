@@ -155,6 +155,8 @@
                         // Add <audio> element to play the file
                         const audio = document.createElement('audio');
                         audio.controls = true;
+                        audio.preload = 'none';
+                        audio.setAttribute('controlsList', 'nodownload');
                         audio.style.width = '100%';
                         audio.src = url;
                         outputLog.appendChild(audio);
@@ -201,7 +203,9 @@
                                 outputLog.appendChild(document.createElement('br'));
                                 // Add <audio> element to play the file
                                 const audio = document.createElement('audio');
-                                audio.controls = true;                                
+                                audio.controls = true;
+                                audio.preload = 'none';
+                                audio.setAttribute('controlsList', 'nodownload');                           
                                 audio.style.width = '100%';                                
                                 audio.src = url;
                                 outputLog.appendChild(audio);
