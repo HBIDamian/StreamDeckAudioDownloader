@@ -1,6 +1,15 @@
 body {
     background-color: #212121 !important;
     color: #fff !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    margin-bottom: 60px;
+}
+
+main {
+    flex: 1;
 }
 
 .container {
@@ -59,9 +68,7 @@ audio {
 
 .jumbotron {
     background-color: #121212;
-    /* Darker jumbotron color */
     color: #fff;
-    /* Jumbotron text color */
     margin-bottom: 20px;
     padding: 2rem 1rem;
 }
@@ -92,36 +99,10 @@ form {
     border-color: #121212 !important;
 }
 
-        body {
-            background-color: #212121;
-            /* Set the background color to a dark shade for dark mode */
-            color: #fff;
-            /* Set text color to white for better contrast */
-            /* Margin to push the footer down */
-            margin-bottom: 60px;
-        }
-    
-        /* Styling to make the footer stick to the bottom of the page */
-        html {
-            position: relative;
-            min-height: 100%;
-        }
-    
-        .jumbotron {
-            background-color: #121212;
-            /* Darker jumbotron color */
-            color: #fff;
-            /* Jumbotron text color */
-            margin-bottom: 20px;
-            padding: 2rem 1rem;
-        }
-    
-        footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background-color: #121212;
-            /* Darker footer background color */
-            color: #fff;
-            /* Footer text color */
-        }
+footer {
+    height: 8em;
+    bottom: 0;
+    width: 100%;
+    background-color: #121212;
+    color: #fff;
+}
